@@ -11,24 +11,25 @@ from the git repo [[https://savannah.gnu.org/projects/emacs/][here]]. In short, 
 --with-imagemagick && make && make install~. If you downloaded it from
 the repo, run ~./autogen.sh~ before ~./configure~.
 
-In your .emacs.d/lisp or wherever you keep your elisp, run these
-commands:
+In your .emacs.d/lisp or wherever you keep your elisp, clone this
+repo:
 
 #+begin_src
-git clone https://github.com/yyyuuuuu/recaptcha-v2.git
 git clone https://github.com/yyyuuuuu/chan.git
 #+end_src
 
-Then make sure both directories are on your load path and load ~chan~.
-If you use use-pacakge and cloned the repos files in .emacs.d/lisp,
-then its:
+Put the repo on your load path and load ~chan~. If you use use-pacakge
+and cloned the repos files in .emacs.d/lisp, then its:
 #+begin_src elisp
-(use-package recaptcha-v2
-  :load-path "lisp/recaptcha-v2")
-
 (use-package chan
   :after (recaptcha-v2)
   :load-path "lisp/chan")
+#+end_src
+
+In vanilla emacs its:
+#+begin_src elisp
+(add-to-list 'load-path "~/.emacs.d/lisp/chan/")
+(require 'chan)
 #+end_src
 
 ** Usage
