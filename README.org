@@ -1,0 +1,71 @@
+* 4chan browser for Emacs
+
+** Installation
+
+First, for images to work you need a build of Emacs that supports
+Imagemagick. You can skip this if you are too lazy, and the browser
+should still work except that images won't be displayed. Install
+Imagemagick, and build Emacs from source with the ~--with-imagemagick~
+option during the ~./configure~ step. You can get Emacs source [[http://ftpmirror.gnu.org/emacs/][here]] or
+get the development version [[https://savannah.gnu.org/projects/emacs/][here]]. Read INSTALL.REPO. In short, what
+you need to run is ~./autogen.sh && ./configre --with-imagemagick &&
+make && make install~
+
+In your .emacs.d/lisp or wherever you keep your elisp, run these
+commands:
+
+#+begin_src
+git clone https://github.com/yyyuuuuu/recaptcha-v2.git
+git clone https://github.com/yyyuuuuu/chan.git
+#+end_src
+
+Then make sure both directories are on your load path and load ~chan~.
+If you use use-pacakge and cloned the repos files in .emacs.d/lisp,
+then its:
+#+begin_src elisp
+(use-package recaptcha-v2
+  :load-path "lisp/recaptcha-v2")
+
+(use-package chan
+  :after (recaptcha-v2)
+  :load-path "lisp/chan")
+#+end_src
+
+** Usage
+
+~M-x chan-catalog~ to get started. (Don't worry about there being no
+images; images are disabled in the catalog for now)
+
+Keys:
+| Enter                                    | If point is on a thread in catalog, visit thread under point        |
+| r                                        | Write reply to thread in buffer, or create new thread if at catalog |
+| Space                                    | Scroll up                                                           |
+| Backspace                                | Scroll down                                                         |
+| n                                        | Next post                                                           |
+| p                                        | Prev post                                                           |
+| l                                        | Center viewport on point                                            |
+| <,>                                      | Move to beginning/end of buffer                                     |
+| Enter (when over backlink such as >>751) | Jump to linked post                                                 |
+| ,                                        | Jump back to last backlinked followed                               |
+
+Keys in a post authoring buffer:
+| C-Enter | Submit post (takes you to a recaptcha) |
+| C-c C-o | Attach a file                          |
+
+In the recaptcha buffer, press Enter to submit the captcha and your
+post. Select images with these keys:
+| u | i | o |
+| j | k | l |
+| m | , | . |
+
+To abandon posting or a recaptcha early, just C-x k kill the buffers.
+
+** Other notes
+
+This browser is currently not in a very usable state and is rather
+barebones. chan.el is only 900 lines. You can browse and post to \/g\/
+with it, but it will be very awkward compared to a web browser. It is
+hardcoded to only browse \/g\/ right now. Image loading is slow and
+unoptimized, so they are disabled in the catalog. Many features like
+backlinks and image viewing are missing. If posting encounters an
+error like an incorrect captcha, it won't handle it gracefully.
