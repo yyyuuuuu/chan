@@ -7,9 +7,9 @@ Imagemagick. You can skip this if you are too lazy, and the browser
 should still work except that images won't be displayed. Install
 Imagemagick, and build Emacs from source with the ~--with-imagemagick~
 option during the ~./configure~ step. You can get Emacs source [[http://ftpmirror.gnu.org/emacs/][here]] or
-get the development version [[https://savannah.gnu.org/projects/emacs/][here]]. Read INSTALL.REPO. In short, what
-you need to run is ~./autogen.sh && ./configre --with-imagemagick &&
-make && make install~
+from the git repo [[https://savannah.gnu.org/projects/emacs/][here]]. In short, what you need to run is ~./configre
+--with-imagemagick && make && make install~. If you downloaded it from
+the repo, run ~./autogen.sh~ before ~./configure~.
 
 In your .emacs.d/lisp or wherever you keep your elisp, run these
 commands:
