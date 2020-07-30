@@ -1,5 +1,7 @@
 * 4chan browser for Emacs
 
+[[./demo.png]]
+
 ** Installation
 
 First, for images to work you need a build of Emacs that supports
@@ -10,6 +12,9 @@ option during the ~./configure~ step. You can get Emacs source [[http://ftpmirro
 from the git repo [[https://savannah.gnu.org/projects/emacs/][here]]. In short, what you need to run is ~./configre
 --with-imagemagick && make && make install~. If you downloaded it from
 the repo, run ~./autogen.sh~ before ~./configure~.
+
+This package also depends on ~elquery~ and ~request~, both of which
+can be installed from melpa.
 
 In your .emacs.d/lisp or wherever you keep your elisp, clone this
 repo:
@@ -29,6 +34,13 @@ In vanilla emacs its:
 #+begin_src elisp
 (add-to-list 'load-path "~/.emacs.d/lisp/chan/")
 (require 'chan)
+#+end_src
+
+With straight.el, this might work without having to manually clone the
+repo:
+#+begin_src elisp
+(use-package chan
+  :straight  elquery request (chan :type git :host github :repo "yyyuuuuu/chan"))
 #+end_src
 
 ** Usage
